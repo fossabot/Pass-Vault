@@ -1,56 +1,55 @@
 <template>
   <v-app>
-    <v-app-bar app color="primary" dark>
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
+    <v-system-bar window dark class="app-header">
+      <span>MyPass - inDev version</span>
       <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
-    </v-app-bar>
-
-    <v-main>
-      <HelloWorld />
-    </v-main>
+      <v-icon @click="onClickMin">{{ icons.mdiMinus }}</v-icon>
+      <v-icon @click="onClickMax">{{ icons.mdiCheckboxBlankOutline }}</v-icon>
+      <v-icon @click="onClickQuit">{{ icons.mdiClose }}</v-icon>
+    </v-system-bar>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld";
+import { remote } from "electron";
+import { mdiMinus, mdiCheckboxBlankOutline, mdiClose } from "@mdi/js";
 
 export default {
   name: "App",
-
-  components: {
-    HelloWorld
-  },
-
   data: () => ({
-    //
-  })
+    icons: {
+      mdiMinus,
+      mdiCheckboxBlankOutline,
+      mdiClose
+    }
+  }),
+  methods: {
+    onClickQuit() {
+      remote.app.quit();
+    },
+
+    onClickMin() {
+      remote.getCurrentWindow().minimize();
+    },
+
+    onClickMax() {
+      if (remote.getCurrentWindow().isMaximized()) {
+        remote.getCurrentWindow().unmaximize();
+      } else {
+        remote.getCurrentWindow().maximize();
+      }
+    }
+  }
 };
 </script>
+
+<style lang="scss">
+.app-header {
+  -webkit-user-select: none;
+  -webkit-app-region: drag;
+
+  & > * {
+    -webkit-app-region: no-drag;
+  }
+}
+</style>
