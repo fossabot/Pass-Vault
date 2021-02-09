@@ -50,6 +50,7 @@ export default {
 </script>
 
 <style lang="scss">
+::-webkit-scrollbar { width: 0px; }
 .app-header {
   -webkit-user-select: none;
   -webkit-app-region: drag;

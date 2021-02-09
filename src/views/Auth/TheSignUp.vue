@@ -4,7 +4,7 @@
       <v-col cols="12" sm="8" md="4">
         <v-card>
           <v-toolbar flat>
-            <v-toolbar-title>Sign In</v-toolbar-title>
+            <v-toolbar-title>Sign Up</v-toolbar-title>
             <v-spacer></v-spacer>
           </v-toolbar>
           <v-card-text>
@@ -24,18 +24,31 @@
                 rounded
                 outlined
                 dense
-                v-model="password"
                 label="Password"
                 name="password"
+                v-model="password"
                 :prepend-icon="icons.mdiLock"
                 type="password"
               ></v-text-field>
+
+              <v-text-field
+                      rounded
+                      outlined
+                      dense
+                      label="Confirm password"
+                      name="password"
+                      v-model="passwordConfirm"
+                      :prepend-icon="icons.mdiLock"
+                      type="password"
+              ></v-text-field>
+
+              <v-checkbox v-model="agreeTerms" dark :off-icon="icons.mdiCheckboxBlankOutline" :on-icon="icons.mdiCheckBoxOutline" label="Agree to terms of use"></v-checkbox>
             </v-form>
-            <v-btn to="register" class="overline" small text>Don't have an account yet?</v-btn>
+            <v-btn to="login" class="overline" small text>Already Registered?</v-btn>
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
-            <v-btn color="primary" text rounded>Login</v-btn>
+            <v-btn color="primary" text rounded>Sign Up</v-btn>
           </v-card-actions>
         </v-card>
       </v-col>
@@ -44,15 +57,19 @@
 </template>
 
 <script>
-import { mdiAccount, mdiLock } from "@mdi/js";
+import { mdiAccount, mdiLock, mdiCheckboxBlankOutline, mdiCheckBoxOutline } from "@mdi/js";
 export default {
-  name: "TheLogin",
+  name: "TheSignUp",
   data: () => ({
     email: null,
     password: null,
+    passwordConfirm: null,
+    agreeTerms: false,
     icons: {
       mdiAccount,
-      mdiLock
+      mdiLock,
+      mdiCheckboxBlankOutline,
+      mdiCheckBoxOutline
     }
   })
 };

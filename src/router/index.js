@@ -18,6 +18,14 @@ const routes = [
       auth: true
     },
     component: () => import("../views/Auth/TheLogin.vue")
+  },
+  {
+    path: "/register",
+    name: "SignUp",
+    meta: {
+      auth: true
+    },
+    component: () => import("../views/Auth/TheSignUp.vue")
   }
 ];
 
