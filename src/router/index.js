@@ -1,7 +1,7 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import CheckAuth from "./auth-check";
+import CheckAuth from "./authCheck";
 
 Vue.use(VueRouter);
 
