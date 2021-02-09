@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar v-model="show" :color="type" elevation="24" top>
+  <v-snackbar class="mt-10" v-model="show" :color="type" elevation="24" top>
     <div class="text-center">
       {{ message }}
     </div>
@@ -11,7 +11,7 @@ export default {
   data: () => ({
     show: false,
     message: "",
-    type: "",
+    type: ""
   }),
 
   created() {
@@ -22,6 +22,6 @@ export default {
         this.show = true;
       }
     });
-  },
+  }
 };
 </script>

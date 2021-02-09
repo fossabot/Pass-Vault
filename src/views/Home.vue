@@ -1,11 +1,11 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-  </div>
+  <toolbar />
 </template>
 
 <script>
+import Toolbar from "../components/partials/Toolbar";
 export default {
-  name: "Home"
+  name: "Home",
+  components: { Toolbar }
 };
 </script>

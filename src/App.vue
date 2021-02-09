@@ -8,6 +8,7 @@
       <v-icon @click="onClickQuit">{{ icons.mdiClose }}</v-icon>
     </v-system-bar>
     <v-main app>
+      <notifier />
       <router-view />
     </v-main>
   </v-app>
@@ -16,9 +17,11 @@
 <script>
 import { remote } from "electron";
 import { mdiMinus, mdiCheckboxBlankOutline, mdiClose } from "@mdi/js";
+import Notifier from "./components/partials/Notifier";
 
 export default {
   name: "App",
+  components: { Notifier },
   created() {
     this.$vuetify.theme.dark = true;
   },
@@ -50,7 +53,9 @@ export default {
 </script>
 
 <style lang="scss">
-::-webkit-scrollbar { width: 0px; }
+::-webkit-scrollbar {
+  width: 0px;
+}
 .app-header {
   -webkit-user-select: none;
   -webkit-app-region: drag;

@@ -32,19 +32,27 @@
               ></v-text-field>
 
               <v-text-field
-                      rounded
-                      outlined
-                      dense
-                      label="Confirm password"
-                      name="password"
-                      v-model="passwordConfirm"
-                      :prepend-icon="icons.mdiLock"
-                      type="password"
+                rounded
+                outlined
+                dense
+                label="Confirm password"
+                name="password"
+                v-model="passwordConfirm"
+                :prepend-icon="icons.mdiLock"
+                type="password"
               ></v-text-field>
 
-              <v-checkbox v-model="agreeTerms" dark :off-icon="icons.mdiCheckboxBlankOutline" :on-icon="icons.mdiCheckBoxOutline" label="Agree to terms of use"></v-checkbox>
+              <v-checkbox
+                v-model="agreeTerms"
+                dark
+                :off-icon="icons.mdiCheckboxBlankOutline"
+                :on-icon="icons.mdiCheckBoxOutline"
+                label="Agree to terms of use"
+              ></v-checkbox>
             </v-form>
-            <v-btn to="login" class="overline" small text>Already Registered?</v-btn>
+            <v-btn to="login" class="overline" small text
+              >Already Registered?</v-btn
+            >
           </v-card-text>
           <v-card-actions>
             <v-spacer></v-spacer>
@@ -57,7 +65,12 @@
 </template>
 
 <script>
-import { mdiAccount, mdiLock, mdiCheckboxBlankOutline, mdiCheckBoxOutline } from "@mdi/js";
+import {
+  mdiAccount,
+  mdiLock,
+  mdiCheckboxBlankOutline,
+  mdiCheckBoxOutline
+} from "@mdi/js";
 export default {
   name: "TheSignUp",
   data: () => ({

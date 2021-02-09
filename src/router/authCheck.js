@@ -1,15 +1,12 @@
-export default (to, from, next) => {
-  const isAuthPage = to.matched.some(record => record.meta.auth);
+import { fbAuth } from "@/utils/firebase";
 
-  const access_token = localStorage.getItem("access_token");
-  if (access_token) {
-    if (isAuthPage) {
-      return next({ name: "Home" });
-    }
+export default (to, from, next) => {
+  const currentUser = fbAuth.currentUser;
+  const requireAuth = to.matched.some(rec => rec.meta.auth);
+
+  if (requireAuth && !currentUser) {
+    next("/login?message=login");
   } else {
-    if (!isAuthPage) {
-      return next({ name: "Login" });
-    }
+    next();
   }
-  next();
 };

@@ -1,7 +1,7 @@
 import Vue from "vue";
 import Vuex from "vuex";
-import auth from "modules/auth"
-import notification from "modules/notification"
+import auth from "../store/modules/auth";
+import notification from "../store/modules/notification";
 
 Vue.use(Vuex);
 
