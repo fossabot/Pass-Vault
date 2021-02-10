@@ -11,12 +11,31 @@ const actions = {
       });
     } catch (err) {
       Vue.prototype.$notifier.showMessage(err, "error");
-      throw err;
+    }
+  },
+
+  async signUp({ dispatch }, { email, password, name, accepted }) {
+    try {
+      await fbAuth.createUserWithEmailAndPassword(email, password);
+      const uid = await dispatch("getUid");
+      await dispatch("fetchOrCreateInfo", {
+        uid,
+        name: name,
+        bill: 10000,
+        accepted: accepted
+      });
+    } catch (err) {
+      Vue.prototype.$notifier.showMessage(err, "error");
     }
   },
 
   async logOut() {
     await fbAuth.signOut();
+  },
+
+  getUid() {
+    const user = fbAuth.currentUser;
+    return user ? user.uid : null;
   }
 };
 

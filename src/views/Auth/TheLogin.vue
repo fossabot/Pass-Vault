@@ -1,8 +1,8 @@
 <template>
   <v-container class="fill-height" fluid>
     <v-row align="center" justify="center">
-      <v-col cols="12" sm="8" md="4">
-        <v-card>
+      <v-col cols="12" sm="8" md="6">
+        <v-card class="mx-auto">
           <v-form @submit.stop.prevent="onLogin" ref="form" lazy-validation>
             <v-toolbar flat>
               <v-toolbar-title>Sign In</v-toolbar-title>
@@ -17,7 +17,7 @@
                 name="Email"
                 :rules="emailRules"
                 v-model="loginForm.email"
-                :prepend-icon="icons.mdiAccount"
+                :prepend-icon="icons.mdiEmail"
                 type="text"
               ></v-text-field>
 
@@ -25,16 +25,21 @@
                 rounded
                 outlined
                 dense
+                :type="showPassword ? 'text' : 'password'"
+                :append-icon="showPassword ? icons.mdiEye : icons.mdiEyeOff"
+                @click:append="showPassword = !showPassword"
                 :rules="passwordRules"
                 v-model="loginForm.password"
                 label="Password"
                 name="password"
                 :prepend-icon="icons.mdiLock"
-                type="password"
               ></v-text-field>
-              <v-btn to="register" class="overline" small text
-                >Don't have an account yet?</v-btn
-              >
+
+              <div class="text-center">
+                <v-btn to="register" class="overline" small text>
+                  Don't have an account yet?
+                </v-btn>
+              </div>
             </v-card-text>
             <v-card-actions>
               <v-spacer></v-spacer>
@@ -56,19 +61,22 @@
 </template>
 
 <script>
-import { mdiAccount, mdiLock } from "@mdi/js";
+import { mdiEmail, mdiLock, mdiEye, mdiEyeOff } from "@mdi/js";
 
 export default {
   name: "TheLogin",
   data: () => ({
     loading: false,
+    showPassword: false,
     loginForm: {
       email: localStorage.email || "",
       password: ""
     },
     icons: {
-      mdiAccount,
-      mdiLock
+      mdiEmail,
+      mdiLock,
+      mdiEye,
+      mdiEyeOff
     },
     emailRules: [
       v => !!v || "E-mail is required",

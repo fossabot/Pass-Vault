@@ -17,7 +17,10 @@ export default new Vuetify({
         error: "#FF5252",
         info: "#2196F3",
         success: "#4CAF50",
-        warning: "#FFC107"
+        warning: "#FFC107",
+        google: "#4285F4",
+        github: "#333333",
+        facebook: "#4267B2"
       },
       dark: {
         primary: "#ec625f",
@@ -26,7 +29,10 @@ export default new Vuetify({
         error: "#FF5252",
         info: "#2196F3",
         success: "#4CAF50",
-        warning: "#FFC107"
+        warning: "#FFC107",
+        google: "#EA4335",
+        github: "#F5F5F5",
+        facebook: "#4267B2"
       }
     }
   },
