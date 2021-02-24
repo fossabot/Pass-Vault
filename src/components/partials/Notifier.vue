@@ -1,5 +1,5 @@
 <template>
-  <v-snackbar class="mt-10" v-model="show" :color="type" elevation="24" top>
+  <v-snackbar class="mt-10" v-model="show" :color="type" elevation="24" top app>
     <div class="text-center">
       {{ message }}
     </div>

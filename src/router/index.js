@@ -1,7 +1,6 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
 import Home from "../views/Home.vue";
-import CheckAuth from "./authCheck";
 
 Vue.use(VueRouter);
 
@@ -9,7 +8,6 @@ const routes = [
   {
     path: "/",
     name: "Home",
-    meta: { auth: true },
     component: Home
   },
   {
@@ -18,9 +16,9 @@ const routes = [
     component: () => import("../views/Auth/TheLogin.vue")
   },
   {
-    path: "/register",
-    name: "SignUp",
-    component: () => import("../views/Auth/TheSignUp.vue")
+    path: "/profile",
+    name: "Profile",
+    component: () => import("../views/Profile/TheProfile.vue")
   }
 ];
 
@@ -29,7 +27,5 @@ const router = new VueRouter({
   base: process.env.BASE_URL,
   routes
 });
-
-router.beforeEach(CheckAuth);
 
 export default router;
