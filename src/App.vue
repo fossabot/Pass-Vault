@@ -1,14 +1,27 @@
 <template>
   <v-app>
-    <v-system-bar window dark class="app-header">
-      <span>MyPass</span>
-      <v-spacer></v-spacer>
-      <v-icon @click="onClickMin">{{ icons.mdiMinus }}</v-icon>
-      <v-icon @click="onClickMax">{{ icons.mdiCheckboxBlankOutline }}</v-icon>
-      <v-icon @click="onClickQuit">{{ icons.mdiClose }}</v-icon>
-    </v-system-bar>
-    <v-main app>
-      <notifier />
+    <system-bar
+      :theme="currentTheme"
+      :platform="platform"
+      :on-close="close"
+      :on-maximize="toggleMaximize"
+      :on-minimize="minimize"
+      :is-maximizable="isMaximizable"
+      :is-closable="isClosable"
+      :is-minimizable="isMinimizable"
+      :show-icon="showIcon"
+      :show-title="showTitle"
+    >
+      <template slot="icon">
+        <img src="@/assets/logo_white.svg" alt="logo" />
+      </template>
+
+      <template slot="title">
+        Pass Vault
+      </template>
+    </system-bar>
+    <notifier />
+    <v-main id="lateral">
       <router-view />
     </v-main>
   </v-app>
@@ -16,37 +29,42 @@
 
 <script>
 import { remote } from "electron";
-import { mdiMinus, mdiCheckboxBlankOutline, mdiClose } from "@mdi/js";
 import Notifier from "./components/partials/Notifier";
-
+import SystemBar from "./components/partials/SystemBar";
 export default {
   name: "App",
-  components: { Notifier },
+  components: { SystemBar, Notifier },
+  data: () => ({
+    platform: process.platform,
+    isMaximizable: remote.getCurrentWindow().isMaximizable(),
+    isMinimizable: remote.getCurrentWindow().isMinimizable(),
+    isClosable: remote.getCurrentWindow().isClosable(),
+    showTitle: true,
+    showIcon: true
+  }),
   created() {
     this.$vuetify.theme.dark = true;
   },
-  data: () => ({
-    icons: {
-      mdiMinus,
-      mdiCheckboxBlankOutline,
-      mdiClose
-    }
-  }),
-  methods: {
-    onClickQuit() {
-      remote.app.quit();
-    },
-
-    onClickMin() {
-      remote.getCurrentWindow().minimize();
-    },
-
-    onClickMax() {
-      if (remote.getCurrentWindow().isMaximized()) {
-        remote.getCurrentWindow().unmaximize();
+  computed: {
+    currentTheme() {
+      if (this.$vuetify.theme.dark) {
+        return "dark";
       } else {
-        remote.getCurrentWindow().maximize();
+        return "light";
       }
+    }
+  },
+  methods: {
+    close() {
+      remote.getCurrentWindow().close();
+    },
+    toggleMaximize() {
+      let win = remote.getCurrentWindow();
+      if (win.isMaximized()) win.unmaximize();
+      else win.maximize();
+    },
+    minimize() {
+      remote.getCurrentWindow().minimize();
     }
   }
 };
@@ -54,14 +72,6 @@ export default {
 
 <style lang="scss">
 ::-webkit-scrollbar {
-  width: 0px;
-}
-.app-header {
-  -webkit-user-select: none;
-  -webkit-app-region: drag;
-
-  & > * {
-    -webkit-app-region: no-drag;
-  }
+  width: 0;
 }
 </style>
