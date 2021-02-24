@@ -17,11 +17,11 @@
       </template>
 
       <template slot="title">
-        Pass Vault
+        {{ $t("app-name") }}
       </template>
     </system-bar>
     <notifier />
-    <v-main id="lateral">
+    <v-main>
       <router-view />
     </v-main>
   </v-app>
