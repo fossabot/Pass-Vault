@@ -191,7 +191,7 @@ $system-bar-height: 28px;
   -webkit-app-region: drag;
   &.system-bar-style-dark {
     color: #fff;
-    background: #2d3135;
+    background: #272727;
   }
   &.system-bar-style-light {
     color: #2c2c2c;

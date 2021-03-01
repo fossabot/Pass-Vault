@@ -3,9 +3,9 @@
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="6">
         <v-card class="mx-auto">
-          <v-form @submit.stop.prevent="onLogin" ref="form" lazy-validation>
+          <v-form @submit.stop.prevent="onSignUp" ref="form" lazy-validation>
             <v-toolbar flat>
-              <v-toolbar-title>{{ $t("sign-in") }}</v-toolbar-title>
+              <v-toolbar-title>{{ $t("sign-up") }}</v-toolbar-title>
               <v-spacer></v-spacer>
             </v-toolbar>
             <v-card-text>
@@ -16,7 +16,7 @@
                 :label="$t('email')"
                 :name="$t('email')"
                 :rules="emailRules"
-                v-model="loginForm.email"
+                v-model="registerForm.email"
                 :prepend-icon="icons.mdiEmail"
                 type="text"
               ></v-text-field>
@@ -29,15 +29,15 @@
                 :append-icon="showPassword ? icons.mdiEye : icons.mdiEyeOff"
                 @click:append="showPassword = !showPassword"
                 :rules="passwordRules"
-                v-model="loginForm.password"
+                v-model="registerForm.password"
                 :label="$t('password')"
                 :name="$t('password')"
                 :prepend-icon="icons.mdiLock"
               ></v-text-field>
 
               <div class="text-center">
-                <v-btn to="signup" class="overline" rounded small text>
-                  {{ $t("dont-have-an-account-yet") }}
+                <v-btn to="login" class="overline" rounded small text>
+                  {{ $t("already-registered") }}
                 </v-btn>
               </div>
             </v-card-text>
@@ -50,7 +50,7 @@
                 rounded
                 :loading="loading"
                 :disabled="loading"
-                >{{ $t("login") }}</v-btn
+                >{{ $t("register") }}</v-btn
               >
             </v-card-actions>
           </v-form>
@@ -64,13 +64,13 @@
 import { mdiEmail, mdiLock, mdiEye, mdiEyeOff } from "@mdi/js";
 
 export default {
-  name: "TheLogin",
+  name: "TheSignUp",
   data: function() {
     return {
       loading: false,
       showPassword: false,
-      loginForm: {
-        email: localStorage.email || "",
+      registerForm: {
+        email: "",
         password: ""
       },
       icons: {
@@ -95,11 +95,11 @@ export default {
     };
   },
   methods: {
-    async onLogin() {
+    async onSignUp() {
       if (this.$refs.form.validate()) {
         this.loading = true;
         try {
-          // await this.$store.dispatch("signIn", this.loginForm);
+          // await this.$store.dispatch("signUp", this.registerForm);
           await this.$router.push(
             this.$route.query.path ? this.$route.query.path : "/"
           );

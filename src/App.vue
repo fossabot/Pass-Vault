@@ -11,6 +11,7 @@
       :is-minimizable="isMinimizable"
       :show-icon="showIcon"
       :show-title="showTitle"
+      :menu="menu"
     >
       <template slot="icon">
         <img src="@/assets/logo_white.svg" alt="logo" />
@@ -34,14 +35,17 @@ import SystemBar from "./components/partials/SystemBar";
 export default {
   name: "App",
   components: { SystemBar, Notifier },
-  data: () => ({
-    platform: process.platform,
-    isMaximizable: remote.getCurrentWindow().isMaximizable(),
-    isMinimizable: remote.getCurrentWindow().isMinimizable(),
-    isClosable: remote.getCurrentWindow().isClosable(),
-    showTitle: true,
-    showIcon: true
-  }),
+  data: function() {
+    return {
+      platform: process.platform,
+      isMaximizable: remote.getCurrentWindow().isMaximizable(),
+      isMinimizable: remote.getCurrentWindow().isMinimizable(),
+      isClosable: remote.getCurrentWindow().isClosable(),
+      showTitle: true,
+      showIcon: true,
+      menu: []
+    };
+  },
   created() {
     this.$vuetify.theme.dark = true;
   },

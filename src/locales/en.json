@@ -1,3 +1,20 @@
 {
-  "app-name": "Pass Vault"
+  "app-name": "Pass Vault",
+  "settings": "Settings",
+  "about": "About",
+  "file": "File",
+  "search": "Search",
+  "sign-in": "Sign In",
+  "sign-up": "Sign Up",
+  "email": "Email",
+  "password": "Password",
+  "login": "Login",
+  "register": "Register",
+  "dont-have-an-account-yet": "Don't have an account yet?",
+  "already-registered": "Already Registered?",
+  "email-is-required": "E-mail is required",
+  "email-must-be-valid": "E-mail must be valid",
+  "a-maximum-of-24-characters-is-allowed": "A maximum of 24 characters is allowed",
+  "a-minimum-of-6-characters-is-allowed": "A minimum of 6 characters is allowed",
+  "no-spaces-are-allowed": "No spaces are allowed"
 }
