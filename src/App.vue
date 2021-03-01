@@ -21,9 +21,12 @@
         {{ $t("app-name") }}
       </template>
     </system-bar>
+    <preloader />
     <notifier />
     <v-main>
-      <router-view />
+      <v-fade-transition>
+        <router-view />
+      </v-fade-transition>
     </v-main>
   </v-app>
 </template>
@@ -32,9 +35,10 @@
 import { remote } from "electron";
 import Notifier from "./components/partials/Notifier";
 import SystemBar from "./components/partials/SystemBar";
+import Preloader from "@/components/partials/Preloader";
 export default {
   name: "App",
-  components: { SystemBar, Notifier },
+  components: { Preloader, SystemBar, Notifier },
   data: function() {
     return {
       platform: process.platform,

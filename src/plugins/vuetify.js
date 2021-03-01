@@ -13,6 +13,7 @@ export default new Vuetify({
       light: {
         primary: "#ec625f",
         secondary: "#424242",
+        background: "#FFFFFF",
         accent: "#82B1FF",
         error: "#FF5252",
         info: "#2196F3",
@@ -25,6 +26,7 @@ export default new Vuetify({
       dark: {
         primary: "#ec625f",
         secondary: "#424242",
+        background: "#121212",
         accent: "#82B1FF",
         error: "#FF5252",
         info: "#2196F3",
