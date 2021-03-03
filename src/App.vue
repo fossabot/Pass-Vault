@@ -14,7 +14,11 @@
       :menu="menu"
     >
       <template slot="icon">
-        <img src="@/assets/logo_white.svg" alt="logo_white" v-if="$vuetify.theme.dark" />
+        <img
+          src="@/assets/logo_white.svg"
+          alt="logo_white"
+          v-if="$vuetify.theme.dark"
+        />
         <img src="@/assets/logo.svg" alt="logo" v-else />
       </template>
 
@@ -27,7 +31,7 @@
     <v-main>
       <transition name="fade" mode="out-in">
         <router-view />
-      </transition>>
+      </transition>
     </v-main>
   </v-app>
 </template>
@@ -87,7 +91,6 @@ export default {
 .fade-leave-active {
   transition: opacity 0.5s ease;
 }
-
 
 .fade-enter-from,
 .fade-leave-to {
