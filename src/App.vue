@@ -14,7 +14,8 @@
       :menu="menu"
     >
       <template slot="icon">
-        <img src="@/assets/logo_white.svg" alt="logo" />
+        <img src="@/assets/logo_white.svg" alt="logo_white" v-if="$vuetify.theme.dark" />
+        <img src="@/assets/logo.svg" alt="logo" v-else />
       </template>
 
       <template slot="title">
@@ -24,9 +25,9 @@
     <preloader />
     <notifier />
     <v-main>
-      <v-fade-transition>
+      <transition name="fade" mode="out-in">
         <router-view />
-      </v-fade-transition>
+      </transition>>
     </v-main>
   </v-app>
 </template>
@@ -81,5 +82,15 @@ export default {
 <style lang="scss">
 ::-webkit-scrollbar {
   width: 0;
+}
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>
